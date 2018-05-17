@@ -38,6 +38,21 @@ class EcobeeCollector(object):
                     "Whether equipment is running",
                     1,
                     **labels))
+            metrics.append(self.make_metric(
+                self._prefix + "is_heating",
+                "Whether heating equipment is running",
+                thermostat.is_heating,
+                **thermostat_id))
+            metrics.append(self.make_metric(
+                self._prefix + "is_cooling",
+                "Whether cooling equipment is running",
+                thermostat.is_cooling,
+                **thermostat_id))
+            metrics.append(self.make_metric(
+                self._prefix + "is_fan",
+                "Whether the fan is running",
+                thermostat.is_fan,
+                **thermostat_id))
             for k, v in thermostat.settings.items():
                 labels = dict(thermostat_id)
                 try:
